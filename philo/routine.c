@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/05 18:24:30 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/05 19:27:27 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,31 @@ static void	eating(t_philo *philo)
 	printf(PUR"( ^o^)🍝 \n"OFF);
 	gettimeofday(&philo->time, NULL);
 	msleep(philo->eat_time);
-	philo->the_fork[0] += 2;
+	philo->the_fork_left[0]++;
+	philo->the_fork_rigth[0]++;
 	philo->can_i_eat = 0;
 }
 
 static int	get_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutex);
-	if (philo->the_fork[0])
+	if (philo->the_fork_left[0])
 	{
-		philo->the_fork[0]--;
+		philo->the_fork_left[0]--;
 		philo->can_i_eat++;
 		printf("%8ld ms, %4d has taken a fork ", \
 			timepassed_ms(*philo->global_time), philo->id);
-		printf(PUR"🍴(｀∇´)🍴 \n"OFF);
+		printf(PUR"🍴(｀∇´) \n"OFF);
+		pthread_mutex_unlock(philo->mutex);
+		return (1);
+	}
+	else if (philo->the_fork_rigth[0])
+	{
+		philo->the_fork_rigth[0]--;
+		philo->can_i_eat++;
+		printf("%8ld ms, %4d has taken a fork ", \
+			timepassed_ms(*philo->global_time), philo->id);
+		printf(PUR"(｀∇´)🍴 \n"OFF);
 		pthread_mutex_unlock(philo->mutex);
 		return (1);
 	}

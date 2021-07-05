@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/05 18:05:02 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/05 19:04:02 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define	BLACK		"\033[0;30m"
 # define	RED			"\033[0;31m" 
 # define	GREEN		"\033[0;32m"
-# define	YEL		"\033[0;33m"
+# define	YEL			"\033[0;33m"
 # define	BLUE		"\033[0;34m"
 # define	PUR			"\033[0;35m"
 # define	CYAN		"\033[0;36m"
@@ -46,7 +46,8 @@ typedef struct s_philo
 {
 	int				id;
 	int				status;
-	int				*the_fork;
+	int				*the_fork_left;
+	int				*the_fork_rigth;
 	int				can_i_eat;
 	int				*stop;
 	long			die_time;
@@ -69,7 +70,7 @@ typedef struct s_main
 	long			eat_time;
 	long			sleep_time;
 	long			eat_max;
-	int				the_fork;
+	int				*the_fork;
 	int				stop;
 	struct timeval	time;
 }				t_main;
