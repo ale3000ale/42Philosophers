@@ -6,7 +6,7 @@
 #    By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/03 18:47:19 by alexmarcell       #+#    #+#              #
-#    Updated: 2021/07/04 19:39:27 by alexmarcell      ###   ########.fr        #
+#    Updated: 2021/07/05 03:30:53 by alexmarcell      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ OBJS_DIR	=		objs
 SRCS_DIR	=		philo/
 
 SRCS		= 		philo.c		utils.c		ft_calloc.c 	ft_atoi.c	\
-					init.c
+					init.c		time.c
 
 #---------------------COMPILER---------------------#
 

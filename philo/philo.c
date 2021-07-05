@@ -6,7 +6,7 @@
 /*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:11:30 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/05 03:05:11 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/05 03:30:32 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	eating(t_philo *philo)
 	{
 		pthread_mutex_lock(philo->mutex);
 		philo->the_fork[0] = 0;
-		printf("%d eating\n", philo->id);
+		printf("%d eating at: %ld\n", philo->id, timepassed_ms(philo->time));
 		sleep(2);
 		philo->the_fork[0] = 1;
 		pthread_mutex_unlock(philo->mutex);
@@ -46,12 +46,19 @@ void	*philo_routine(void	*ph)
 	t_philo	*philo;
 
 	philo = (t_philo *)ph;
+	gettimeofday(&philo->time, NULL);
 	while (1)
 	{
+		if (timepassed_ms(philo->time) >= philo->die_time)
+		{
+			philo->status = DEAD;
+			return (0);
+		}
 		if (philo->status == THINKING)
 		{
 			if (eating(philo))
 			{
+				gettimeofday(&philo->time, NULL);
 				philo->eat_count++;
 				if (philo->eat_max != -1 && philo->eat_count == philo->eat_max)
 				{
@@ -63,13 +70,14 @@ void	*philo_routine(void	*ph)
 		}
 		if (philo->status == SLEEPING)
 		{
-			printf("%d sleep time\n", philo->id);
+			printf("%d sleep time at: %ld\n", philo->id, timepassed_ms(philo->time));
 			msleep(philo->sleep_time);
 			philo->status = THINKING;
-			printf("%d thinking time\n", philo->id);
+			gettimeofday(&philo->time, NULL);
+			printf("%d thinking time at: %ld\n", philo->id, timepassed_ms(philo->time));
 		}
 	}
-	printf("%d are FULL\n", philo->id);
+	printf("%d are FULL at: %ld\n", philo->id, timepassed_ms(philo->time));
 	return(0);
 }
 

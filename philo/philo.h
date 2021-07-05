@@ -6,7 +6,7 @@
 /*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/05 02:57:42 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/05 03:21:19 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int		init_main(t_main *control, char	**argc);
 long	msleep(int ms);
 void	*philo_routine(void	*philo);
 int 	create_threads(t_main *control);
+long	timepassed_ms(struct timeval time_start);
 
 #endif
