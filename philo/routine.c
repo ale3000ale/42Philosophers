@@ -6,82 +6,57 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/05 19:27:27 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:56:38 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	eating(t_philo *philo)
+static long	sleep_spleeping(int ms, t_philo *philo)
 {
-	printf("%8ld ms, %4d is eating ", \
-		timepassed_ms(*philo->global_time), philo->id);
-	printf(PUR"( ^o^)🍝 \n"OFF);
-	gettimeofday(&philo->time, NULL);
-	msleep(philo->eat_time);
-	philo->the_fork_left[0]++;
-	philo->the_fork_rigth[0]++;
-	philo->can_i_eat = 0;
-}
+	struct timeval	time;
+	suseconds_t		time_start;
+	time_t			sec;
+	long			wait_time;
 
-static int	get_fork(t_philo *philo)
-{
-	pthread_mutex_lock(philo->mutex);
-	if (philo->the_fork_left[0])
+	wait_time = (ms * 1000) >> 2;
+	ms = ms * 1000;
+	gettimeofday(&time, NULL);
+	time_start = time.tv_usec;
+	sec = time.tv_sec * 1000000 + time_start;
+	while ((time.tv_sec * 1000000 + time.tv_usec) - \
+		(sec) < ms)
 	{
-		philo->the_fork_left[0]--;
-		philo->can_i_eat++;
-		printf("%8ld ms, %4d has taken a fork ", \
-			timepassed_ms(*philo->global_time), philo->id);
-		printf(PUR"🍴(｀∇´) \n"OFF);
-		pthread_mutex_unlock(philo->mutex);
-		return (1);
+		if (philo->die_time < timepassed_ms(philo->time))
+			return (-1);
+		usleep(wait_time);
+		wait_time = wait_time >> 2;
+		gettimeofday(&time, NULL);
 	}
-	else if (philo->the_fork_rigth[0])
-	{
-		philo->the_fork_rigth[0]--;
-		philo->can_i_eat++;
-		printf("%8ld ms, %4d has taken a fork ", \
-			timepassed_ms(*philo->global_time), philo->id);
-		printf(PUR"(｀∇´)🍴 \n"OFF);
-		pthread_mutex_unlock(philo->mutex);
-		return (1);
-	}
-	pthread_mutex_unlock(philo->mutex);
-	return (0);
-}
-
-static int	think_time(t_philo *philo)
-{
-	if (get_fork(philo) && philo->can_i_eat == 2)
-	{
-		eating(philo);
-		philo->eat_count++;
-		if (philo->eat_max != -1 && philo->eat_count == philo->eat_max)
-		{
-			philo->status = FULL;
-			return (1);
-		}
-		philo->status = SLEEPING;
-	}
-	return (0);
+	return (((time.tv_sec * 1000000 + time.tv_usec) - \
+		(sec)) / 1000);
 }
 
 static void	sleeping(t_philo *philo)
 {
+	pthread_mutex_lock(philo->mutex_print);
 	printf("%8ld ms, %4d is sleeping "PUR"(( _ _ ))"CYAN"..zzZZ \n"\
 	OFF, timepassed_ms(*philo->global_time), philo->id);
-	gettimeofday(&philo->time, NULL);
-	msleep(philo->sleep_time);
+	pthread_mutex_unlock(philo->mutex_print);
+	if (sleep_spleeping(philo->sleep_time, philo) < 0)
+		return ;
 	philo->status = THINKING;
+	pthread_mutex_lock(philo->mutex_print);
 	printf("%8ld ms, %4d is thinking "PUR"('ω')"GREEN"｡o○ \n"OFF, \
 		timepassed_ms(*philo->global_time), philo->id);
+	pthread_mutex_unlock(philo->mutex_print);
 	gettimeofday(&philo->time, NULL);
 }
 
 void	*deathing(t_philo *philo)
 {
 	philo->status = DEAD;
+	pthread_mutex_lock(philo->mutex_print);
 	printf("%8ld ms, %4d died "PUR"(´"RED"༎ຶོ"PUR"ρ"RED"༎ຶོ"PUR"`)\n" \
 	OFF, timepassed_ms(*philo->global_time), philo->id);
 	return (0);
@@ -104,10 +79,14 @@ void	*philo_routine(void	*ph)
 		else if (philo->status == THINKING && !*philo->stop)
 			if (think_time(philo))
 				break ;
+		if (*philo->stop)
+			return (0);
 		if (philo->status == SLEEPING && !*philo->stop)
 			sleeping(philo);
 	}
+	pthread_mutex_lock(philo->mutex_print);
 	printf("%8ld ms, %4d are FULL "PUR"("YEL"●"PUR"´ω｀" \
 	YEL"●"PUR")\n"OFF, timepassed_ms(*philo->global_time), philo->id);
+	pthread_mutex_unlock(philo->mutex_print);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/03 18:47:19 by alexmarcell       #+#    #+#              #
-#    Updated: 2021/07/05 15:39:44 by amarcell         ###   ########.fr        #
+#    Updated: 2021/07/06 16:02:49 by amarcell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ OBJS_DIR	=		objs
 SRCS_DIR	=		philo/
 
 SRCS		= 		philo.c		utils.c		ft_calloc.c 	ft_atoi.c	\
-					init.c		time.c		routine.c
+					init.c		time.c		routine.c		routine2.c	\
+					init2.c	
 
 #---------------------COMPILER---------------------#
 

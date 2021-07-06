@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/05 19:04:02 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:03:27 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ typedef struct s_philo
 	long			sleep_time;
 	long			eat_count;
 	long			eat_max;
-	pthread_mutex_t	*mutex;
+	pthread_mutex_t	*mutex_left;
+	pthread_mutex_t	*mutex_rigth;
+	pthread_mutex_t	*mutex_print;
 	struct timeval	time;
 	struct timeval	*global_time;
 }				t_philo;
@@ -64,7 +66,8 @@ typedef struct s_main
 {
 	int				n_philos;
 	pthread_t		*threads;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	*mutex;
+	pthread_mutex_t	print_mutex;
 	t_philo			*philos;
 	long			die_time;
 	long			eat_time;
@@ -87,5 +90,7 @@ void	*philo_routine(void	*philo);
 int		create_threads(t_main *control);
 long	timepassed_ms(struct timeval time_start);
 void	*philo_routine(void	*ph);
+int		mutex_init(t_main *control);
+int		think_time(t_philo *philo);
 
 #endif
