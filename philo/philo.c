@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:11:30 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/06 16:51:51 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/06 19:03:45 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	main(int argv, char	**argc)
 
 	if (!((argv - 1 == 5 || argv - 1 == 4) && init_main(&control, argc)))
 		return (printf("ERROR ARGUMENT\n") * 0 + 1);
+	return (0);
 	if ((!create_threads(&control)))
 		return (printf("ERROR THREADS \n") * 0 + 1);
 	controller(&control);

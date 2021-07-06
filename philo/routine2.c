@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:56:57 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/06 18:04:44 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:54:01 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	get_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork)
 		fork[0]--;
 		philo->can_i_eat++;
 		pthread_mutex_lock(philo->mutex_print);
-		printf("%8ld ms, %4d has taken a fork ", \
-			timepassed_ms(*philo->global_time), philo->id);
+		printf("G:%8ld ms L:%8ld ms, %4d has taken a fork ", \
+			timepassed_ms(*philo->global_time), timepassed_ms(philo->time), philo->id);
 		printf(PUR"🍴(｀∇´) \n"OFF);
 		pthread_mutex_unlock(philo->mutex_print);
 		pthread_mutex_unlock(mutex);
@@ -33,16 +33,26 @@ static int	get_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork)
 
 static void	eating(t_philo *philo)
 {
-	gettimeofday(&philo->time, NULL);
 	pthread_mutex_lock(philo->mutex_print);
-	printf("%8ld ms, %4d is eating ", \
-		timepassed_ms(*philo->global_time), philo->id);
+	printf("G:%8ld ms L:%8ld ms, %4d is eating ", \
+		timepassed_ms(*philo->global_time), timepassed_ms(philo->time), philo->id);
 	printf(PUR"( ^o^)🍝 \n"OFF);
 	pthread_mutex_unlock(philo->mutex_print);
-	philo->the_fork_left[0]++;
-	philo->the_fork_rigth[0]++;
+	gettimeofday(&philo->time, NULL);
 	msleep(philo->eat_time);
+	pthread_mutex_lock(philo->mutex_left);
+	philo->the_fork_left[0]++;
+	pthread_mutex_unlock(philo->mutex_left);
+	pthread_mutex_lock(philo->mutex_rigth);
+	philo->the_fork_rigth[0]++;
+	pthread_mutex_unlock(philo->mutex_rigth);
 	philo->can_i_eat = 0;
+	pthread_mutex_lock(philo->mutex_print);
+	printf("G:%8ld ms L:%8ld ms, %4d has DROP a fork ", \
+		timepassed_ms(*philo->global_time), timepassed_ms(philo->time), philo->id);
+	printf(PUR"🍴 \n"OFF);
+	pthread_mutex_unlock(philo->mutex_print);
+	
 }
 
 static int	try_left_eat(t_philo *philo)

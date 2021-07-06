@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:36:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/06 16:21:17 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/06 19:04:54 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	philo_set_forks(t_main *control, t_philo *philo)
 	philo->mutex_left = &control->mutex[philo->id % control->n_philos];
 	philo->the_fork_rigth = &control->the_fork[philo->id - 1];
 	philo->mutex_rigth = &control->mutex[philo->id - 1];
+	printf("M %p F %p | %d | F %p M %p\n", philo->mutex_left, philo->the_fork_left, philo->id,\
+		philo->the_fork_rigth, philo->mutex_rigth);
 }
 
 static int	forks_gen(t_main *control)
