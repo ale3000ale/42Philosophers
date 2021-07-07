@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/06 18:03:27 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 16:12:58 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@
 # define	PUR			"\033[0;35m"
 # define	CYAN		"\033[0;36m"
 # define	WHITE		"\033[0;37m"
+
+# define	SLEEP_STAMP		"is sleeping \033[0;35m(( _ _ ))\033[0;36m..zzZZ"
+# define	DEAD_STAMP		"died \033[0;35m(´\033[0;31m༎ຶོ\033[0;35mρ\033[0;31m༎ຶོ\
+\033[0;35m`)"
+# define	EATING_STAMP	"is eating \033[0;35m( ^o^)🍝"
+# define	THINKING_STAMP	"is thinking \033[0;35m('ω')\033[0;32m｡o○"
+# define	FULL_STAMP		"are FULL \033[0;35m(\033[0;33m●\033[0;35m´ω｀\
+\033[0;33m●\033[0;35m)"
+# define	DROP_STAMP		"has DROP the forks 🍴🍴"
+# define	FORK_STAMP		"has taken a fork \033[0;35m🍴(｀∇´)"
 
 # define	DEAD		0
 # define	EATING		1
@@ -92,5 +102,7 @@ long	timepassed_ms(struct timeval time_start);
 void	*philo_routine(void	*ph);
 int		mutex_init(t_main *control);
 int		think_time(t_philo *philo);
+int		timestamp(t_philo *philo, char *s, int alive);
+int		get_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork);
 
 #endif

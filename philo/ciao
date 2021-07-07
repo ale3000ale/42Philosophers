@@ -1,0 +1,185 @@
+G:     0 ms L:     0 ms,    2 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    2 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    2 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,    4 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    6 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    4 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    6 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    6 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,    4 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,   10 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   10 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   10 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,   16 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   16 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   16 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,   12 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   12 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   12 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,   14 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   14 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   14 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,   18 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   18 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   18 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,    8 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    8 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,    8 is eating [0;35m( ^o^)🍝
+[0mG:     0 ms L:     0 ms,   20 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   20 has taken a fork [0;35m🍴(｀∇´)
+[0mG:     0 ms L:     0 ms,   20 is eating [0;35m( ^o^)🍝
+[0mG:   200 ms L:   200 ms,    2 has DROP the forks 🍴🍴
+[0mG:   200 ms L:   200 ms,    2 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 2 wait 400 extra 0 eat: 200  sleep 200
+G:   200 ms L:   200 ms,   11 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   200 ms L:   200 ms,   13 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   203 ms L:   203 ms,   12 has DROP the forks 🍴🍴
+[0mG:   203 ms L:   203 ms,   12 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 12 wait 403 extra 3 eat: 200  sleep 200
+G:   203 ms L:   203 ms,    1 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   207 ms L:   207 ms,    3 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,   20 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,   20 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 20 wait 409 extra 9 eat: 200  sleep 200
+G:   209 ms L:   209 ms,    4 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,    6 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,    4 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mG:   209 ms L:   209 ms,    6 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 4 wait 409 extra 9 eat: 200  sleep 200
+AO 6 wait 409 extra 9 eat: 200  sleep 200
+G:   209 ms L:   209 ms,   10 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,   18 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,   10 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mG:   209 ms L:   209 ms,   18 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 10 wait 409 extra 9 eat: 200  sleep 200
+AO 18 wait 409 extra 9 eat: 200  sleep 200
+G:   209 ms L:   209 ms,   19 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    8 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,   19 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    8 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mG:   209 ms L:   209 ms,   19 is eating [0;35m( ^o^)🍝
+[0mAO 8 wait 409 extra 9 eat: 200  sleep 200
+G:   209 ms L:   209 ms,   16 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,   16 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 16 wait 409 extra 9 eat: 200  sleep 200
+G:   209 ms L:   209 ms,    3 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    3 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,    7 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    7 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    7 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,    5 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    5 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    5 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,   17 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,   17 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,   17 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,    9 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    9 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    9 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,   13 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    1 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,    1 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,   15 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,   14 has DROP the forks 🍴🍴
+[0mG:   209 ms L:   209 ms,   14 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 14 wait 409 extra 9 eat: 200  sleep 200
+G:   209 ms L:   209 ms,   15 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,   15 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,   11 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   209 ms L:   209 ms,   11 is eating [0;35m( ^o^)🍝
+[0mG:   209 ms L:   209 ms,   13 is eating [0;35m( ^o^)🍝
+[0mG:   400 ms L:   400 ms,   14 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   400 ms L:   400 ms,   12 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   401 ms L:   400 ms,   20 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   408 ms L:   408 ms,    2 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   408 ms L:   408 ms,    4 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   409 ms L:   409 ms,    2 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,    6 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   409 ms L:   409 ms,   10 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   409 ms L:   409 ms,   16 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   409 ms L:   200 ms,   17 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,   17 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 17 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   200 ms,    9 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,    5 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,    5 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 5 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   200 ms,   19 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,   19 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 19 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   409 ms,   20 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   200 ms,    3 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,    3 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 3 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   409 ms,    4 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,    4 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,    4 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   409 ms,    8 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   409 ms L:   409 ms,    8 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,    8 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,    8 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   409 ms,   18 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   409 ms L:   409 ms,   18 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   18 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   18 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   409 ms,   16 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   10 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   16 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   10 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   16 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   409 ms,   10 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   200 ms,    9 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 9 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   409 ms,   14 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   20 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   14 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,   20 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   409 ms,   14 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   200 ms,    1 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,   13 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   409 ms,   12 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   200 ms,   13 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mG:   409 ms L:   409 ms,   12 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   200 ms,    7 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   409 ms,   12 is eating [0;35m( ^o^)🍝
+[0mAO 13 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   200 ms,    7 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 7 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   409 ms,    6 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   200 ms,   11 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,   11 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 11 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   409 ms,    6 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   409 ms,    6 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   409 ms,    2 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   409 ms L:   200 ms,   15 has DROP the forks 🍴🍴
+[0mG:   409 ms L:   200 ms,   15 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 15 wait 400 extra 0 eat: 200  sleep 200
+G:   409 ms L:   409 ms,    2 is eating [0;35m( ^o^)🍝
+[0mG:   409 ms L:   200 ms,    1 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 1 wait 400 extra 0 eat: 200  sleep 200
+G:   609 ms L:   400 ms,   17 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   200 ms,    4 has DROP the forks 🍴🍴
+[0mG:   609 ms L:   200 ms,    4 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 4 wait 400 extra 0 eat: 200  sleep 200
+G:   609 ms L:   400 ms,    5 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   400 ms,    5 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   609 ms L:   200 ms,   18 has DROP the forks 🍴🍴
+[0mG:   609 ms L:   200 ms,   18 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 18 wait 400 extra 0 eat: 200  sleep 200
+G:   609 ms L:   400 ms,    9 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   200 ms,   20 has DROP the forks 🍴🍴
+[0mG:   609 ms L:   200 ms,   20 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 20 wait 400 extra 0 eat: 200  sleep 200
+G:   609 ms L:   400 ms,   13 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   400 ms,    7 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   200 ms,    2 has DROP the forks 🍴🍴
+[0mG:   609 ms L:   400 ms,    1 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   400 ms,    1 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   609 ms L:   400 ms,   11 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   609 ms L:   400 ms,   17 has taken a fork [0;35m🍴(｀∇´)
+[0mG:   609 ms L:   200 ms,    2 is sleeping [0;35m(( _ _ ))[0;36m..zzZZ
+[0mAO 2 wait 400 extra 0 eat: 200  sleep 200
+G:   609 ms L:   400 ms,   15 is thinking [0;35m('ω')[0;32m｡o○
+[0mG:   619 ms L:   410 ms,    5 died [0;35m(´[0;31m༎ຶོ[0;35mρ[0;31m༎ຶོ[0;35m`)
+[0m

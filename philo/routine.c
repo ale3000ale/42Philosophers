@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/07 03:12:26 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/07 16:02:26 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	get_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork)
+{
+	pthread_mutex_lock(mutex);
+	if (fork[0])
+	{
+		fork[0] = 0;
+		philo->can_i_eat++;
+		timestamp(philo, FORK_STAMP, 1);
+		pthread_mutex_unlock(mutex);
+		return (1);
+	}
+	pthread_mutex_unlock(mutex);
+	return (0);
+}
 
 static long	sleep_spleeping(t_philo *philo)
 {
@@ -19,46 +34,31 @@ static long	sleep_spleeping(t_philo *philo)
 
 	waiting = timepassed_ms(philo->time) + philo->sleep_time;
 	extra = waiting - philo->eat_time - philo->sleep_time;
-	if (waiting < philo->die_time)
+	printf("AO %d wait %ld extra %ld eat: %ld  sleep %ld\n",\
+	philo->id, waiting, extra, philo->eat_time , philo->sleep_time);
+	if (waiting - extra < philo->die_time)
 		return (msleep(philo->sleep_time - extra));
-		//return (printf("%d WAITSLEEP %ld sleep %ld\n", philo->id, waiting, msleep(waiting - philo->die_time)));
 	else
 	{
 		msleep(philo->die_time - philo->eat_time - extra);
-		//printf(" %d WAITDEAD %ld sleep %ld\n", philo->id, waiting, msleep(waiting - philo->die_time));
 		return (-1);
 	}
-	/*
-	while (timepassed_ms(time_start) < philo->sleep_time)
-	{
-		sleep(2);
-		if (timepassed_ms(philo->time) > philo->die_time)
-			return (-1);
-	}*/
 	return (1);
 }
 
 static void	sleeping(t_philo *philo)
 {
-	pthread_mutex_lock(philo->mutex_print);
-	printf("G:%8ld ms L:%8ld ms, %4d is sleeping "PUR"(( _ _ ))"CYAN"..zzZZ \n"\
-		OFF, timepassed_ms(*philo->global_time), timepassed_ms(philo->time), philo->id);
-	pthread_mutex_unlock(philo->mutex_print);
+	timestamp(philo, SLEEP_STAMP, 1);
 	if (sleep_spleeping(philo) < 0)
 		return ;
 	philo->status = THINKING;
-	pthread_mutex_lock(philo->mutex_print);
-	printf("G:%8ld ms L:%8ld ms, %4d is thinking "PUR"('ω')"GREEN"｡o○ \n"OFF, \
-		timepassed_ms(*philo->global_time), timepassed_ms(philo->time), philo->id);
-	pthread_mutex_unlock(philo->mutex_print);
+	timestamp(philo, THINKING_STAMP, 1);
 }
 
-void	*deathing(t_philo *philo)
+void	*starvation(t_philo *philo)
 {
 	philo->status = DEAD;
-	pthread_mutex_lock(philo->mutex_print);
-	printf("G:%8ld ms L:%8ld ms, %4d died "PUR"(´"RED"༎ຶོ"PUR"ρ"RED"༎ຶོ"PUR"`)\n" \
-	OFF, timepassed_ms(*philo->global_time), timepassed_ms(philo->time), philo->id);
+	timestamp(philo, DEAD_STAMP, 0);
 	return (0);
 }
 
@@ -74,17 +74,14 @@ void	*philo_routine(void	*ph)
 	{
 		if (*philo->stop)
 			return (0);
-		if (timepassed_ms(philo->time) >= philo->die_time && !*philo->stop)
-			return (deathing(philo));
-		else if (philo->status == THINKING && !*philo->stop)
-			if (think_time(philo))
-				break ;
 		if (philo->status == SLEEPING && !*philo->stop)
 			sleeping(philo);
+		if (philo->status == THINKING && !*philo->stop)
+			if (think_time(philo))
+				break ;
+		if (timepassed_ms(philo->time) >= philo->die_time && !*philo->stop)
+			return (starvation(philo));
 	}
-	pthread_mutex_lock(philo->mutex_print);
-	printf("%8ld ms, %4d are FULL "PUR"("YEL"●"PUR"´ω｀" \
-	YEL"●"PUR")\n"OFF, timepassed_ms(*philo->global_time), philo->id);
-	pthread_mutex_unlock(philo->mutex_print);
+	timestamp(philo, FULL_STAMP, 1);
 	return (0);
 }
