@@ -6,23 +6,11 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:11:30 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/07 15:39:19 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 18:33:09 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	thdetach(t_main *control)
-{
-	int	i;
-
-	i = 0;
-	while (i < control->n_philos)
-	{
-		pthread_detach(control->threads[i]);
-		i++;
-	}
-}
 
 static void	destoy_mutex(t_main *control)
 {
@@ -51,7 +39,6 @@ static void	controller(t_main *control)
 		if (control->philos[i].status == DEAD)
 		{
 			control->stop = 1;
-			thdetach(control);
 			break ;
 		}
 		else if (control->philos[i].status == FULL)

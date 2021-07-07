@@ -6,7 +6,7 @@
 #    By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/03 18:47:19 by alexmarcell       #+#    #+#              #
-#    Updated: 2021/07/06 16:02:49 by amarcell         ###   ########.fr        #
+#    Updated: 2021/07/07 18:26:11 by amarcell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ OBJS		=		$(patsubst %.c, ${OBJS_DIR}/%.o, ${SRCS})
 
 $(OBJS_DIR)/%.o :	./%.c
 			@ mkdir -p $(OBJS_DIR)
-			$(CC) $(CFLAGS) -c $< -o $@
+			$(CC) $(CFLAGS) -pthread -c $< -o $@
 
 #---------------------COMMANDS---------------------#
 

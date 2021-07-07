@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:56:57 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/07 16:03:51 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 18:32:34 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ static int	sleep_eat(t_philo *philo)
 	extra = waiting - philo->eat_time;
 	if (waiting - extra < philo->die_time)
 		return (msleep(philo->sleep_time - extra));
-		//return (printf("%d WAITSLEEP %ld sleep %ld\n", philo->id, waiting, msleep(waiting - philo->die_time)));
 	else
 	{
 		msleep(philo->die_time - extra);
-		//printf(" %d WAITDEAD %ld sleep %ld\n", philo->id, waiting, msleep(waiting - philo->die_time));
 		return (-1);
 	}
 	return (1);

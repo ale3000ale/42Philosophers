@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/07 16:02:26 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 17:53:34 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static long	sleep_spleeping(t_philo *philo)
 
 	waiting = timepassed_ms(philo->time) + philo->sleep_time;
 	extra = waiting - philo->eat_time - philo->sleep_time;
-	printf("AO %d wait %ld extra %ld eat: %ld  sleep %ld\n",\
-	philo->id, waiting, extra, philo->eat_time , philo->sleep_time);
 	if (waiting - extra < philo->die_time)
 		return (msleep(philo->sleep_time - extra));
 	else

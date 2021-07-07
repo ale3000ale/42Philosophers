@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 03:15:22 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/07 15:52:20 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 18:26:28 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,15 @@ int	timestamp(t_philo *philo, char *s, int alive)
 	long	global_time;
 
 	pthread_mutex_lock(philo->mutex_print);
-	local_time = timepassed_ms(philo->time);
-	global_time = timepassed_ms(*philo->global_time);
-	printf("G:%6ld ms L:%6ld ms, %4d %s\n"\
-		OFF, global_time, local_time, philo->id, s);
-	if (alive)
-		pthread_mutex_unlock(philo->mutex_print);
+	if (!*philo->stop)
+	{
+		local_time = timepassed_ms(philo->time);
+		global_time = timepassed_ms(*philo->global_time);
+		printf("G:%6ld ms L:%6ld ms, %4d %s\n"\
+			OFF, global_time, local_time, philo->id, s);
+		if (!alive)
+			*philo->stop = 1;
+	}
+	pthread_mutex_unlock(philo->mutex_print);
 	return (0);
 }
