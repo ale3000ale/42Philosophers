@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:56:57 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/06 18:54:01 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 03:15:43 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ static void	eating(t_philo *philo)
 	pthread_mutex_unlock(philo->mutex_print);
 	gettimeofday(&philo->time, NULL);
 	msleep(philo->eat_time);
-	pthread_mutex_lock(philo->mutex_left);
+	//pthread_mutex_lock(philo->mutex_left);
 	philo->the_fork_left[0]++;
-	pthread_mutex_unlock(philo->mutex_left);
-	pthread_mutex_lock(philo->mutex_rigth);
+	//pthread_mutex_unlock(philo->mutex_left);
+	//pthread_mutex_lock(philo->mutex_rigth);
 	philo->the_fork_rigth[0]++;
-	pthread_mutex_unlock(philo->mutex_rigth);
+	//pthread_mutex_unlock(philo->mutex_rigth);
 	philo->can_i_eat = 0;
 	pthread_mutex_lock(philo->mutex_print);
 	printf("G:%8ld ms L:%8ld ms, %4d has DROP a fork ", \

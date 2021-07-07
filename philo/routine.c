@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/06 19:00:58 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 03:12:26 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,27 @@
 
 static long	sleep_spleeping(t_philo *philo)
 {
-	struct timeval	time_start;
+	long			waiting;
+	long			extra;
 
-	gettimeofday(&time_start, NULL);
+	waiting = timepassed_ms(philo->time) + philo->sleep_time;
+	extra = waiting - philo->eat_time - philo->sleep_time;
+	if (waiting < philo->die_time)
+		return (msleep(philo->sleep_time - extra));
+		//return (printf("%d WAITSLEEP %ld sleep %ld\n", philo->id, waiting, msleep(waiting - philo->die_time)));
+	else
+	{
+		msleep(philo->die_time - philo->eat_time - extra);
+		//printf(" %d WAITDEAD %ld sleep %ld\n", philo->id, waiting, msleep(waiting - philo->die_time));
+		return (-1);
+	}
+	/*
 	while (timepassed_ms(time_start) < philo->sleep_time)
 	{
-		msleep(1);
-		if (timepassed_ms(time_start) > philo->die_time)
+		sleep(2);
+		if (timepassed_ms(philo->time) > philo->die_time)
 			return (-1);
-	}
+	}*/
 	return (1);
 }
 

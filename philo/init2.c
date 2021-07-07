@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:36:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/06 19:04:54 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/07 01:38:44 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 static void	philo_set_forks(t_main *control, t_philo *philo)
 {
-	philo->the_fork_left = &control->the_fork[philo->id % control->n_philos];
-	philo->mutex_left = &control->mutex[philo->id % control->n_philos];
-	philo->the_fork_rigth = &control->the_fork[philo->id - 1];
-	philo->mutex_rigth = &control->mutex[philo->id - 1];
-	printf("M %p F %p | %d | F %p M %p\n", philo->mutex_left, philo->the_fork_left, philo->id,\
-		philo->the_fork_rigth, philo->mutex_rigth);
+	philo->the_fork_left = &control->the_fork[philo->id - 1];
+	philo->mutex_left = &control->mutex[philo->id - 1];
+	philo->the_fork_rigth = &control->the_fork[philo->id % control->n_philos];
+	philo->mutex_rigth = &control->mutex[philo->id % control->n_philos];
 }
 
 static int	forks_gen(t_main *control)
