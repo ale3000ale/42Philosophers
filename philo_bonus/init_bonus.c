@@ -3,34 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:04:29 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/07 19:31:52 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/08 02:16:58 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	create_threads(t_main *control)
+int	create_process(t_main *control)
 {
 	int	i;
+	int pid;
 
 	i = 0;
-	gettimeofday(&control->time, NULL);
-	control->threads = ft_calloc(control->n_philos, sizeof(pthread_t));
-	if (!control->threads)
-		return (0);
 	while (i < control->n_philos)
 	{
-		control->philos[i].global_time = &control->time;
-		if (pthread_create(&control->threads[i], NULL, \
-							philo_routine, &control->philos[i]))
-		{
-			free(control->threads);
-			free(control->philos);
+		pid = fork();
+		control->philo.id += i;
+		if (i > 5)
+			printf("AO\n");
+		if (!pid)
+			return (2);
+		if (pid < 0)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -46,6 +43,7 @@ static void	init_philo(t_main *control, t_philo *philo, int id)
 	philo->sleep_time = control->sleep_time;
 	philo->status = THINKING;
 	philo->can_i_eat = 0;
+	philo->global_time = &control->time;
 }
 
 int	init_main(t_main *control, char	**argc)
@@ -56,13 +54,16 @@ int	init_main(t_main *control, char	**argc)
 	control->die_time = ft_latoi(argc[2]);
 	control->eat_time = ft_latoi(argc[3]);
 	control->sleep_time = ft_latoi(argc[4]);
+	gettimeofday(&control->time, NULL);
 	if (argc[5])
 		control->eat_max = ft_latoi(argc[5]);
 	else
 		control->eat_max = -1;
 	init_philo(control, &control->philo, 1);
-	if (sem_init(&control->sem, 0, control->n_philos))
+	control->sem = sem_open("forks", control->n_philos, O_CREAT);
+	if (!control->sem)
 		return (0);
 	control->philo.sem = control->sem;
+	control->pid_philo = ft_calloc(control->n_philos, sizeof(pid_t));
 	return (1);
 }

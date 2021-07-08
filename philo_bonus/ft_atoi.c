@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 18:52:30 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/07 18:33:21 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/08 02:06:20 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo_bonus.h"
 
 int	is_space(char c)
 {

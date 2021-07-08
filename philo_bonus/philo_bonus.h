@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/07 19:16:25 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/08 02:10:31 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ typedef struct s_philo
 typedef struct s_main
 {
 	int				n_philos;
-	int				philo_process;
 	t_philo			philo;
+	pid_t			*pid_philo;
 	long			die_time;
 	long			eat_time;
 	long			sleep_time;
 	long			eat_max;
 	struct timeval	time;
-	sem_t			sem;
+	sem_t			*sem;
 }				t_main;
 
 long	ft_latoi(const char *str);
@@ -88,5 +88,7 @@ int		ft_strlen(char *s);
 int		is_integer(char *s);
 void	*ft_calloc(size_t count, size_t size);
 long	msleep(int ms);
+int		create_process(t_main *control);
+int		init_main(t_main *control, char	**argc);
 
 #endif

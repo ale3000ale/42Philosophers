@@ -6,11 +6,11 @@
 /*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 19:28:17 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/04 19:48:20 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/08 02:06:24 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static void	ft_bzero(void *s, size_t n)
 {
