@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+         #
+#    By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/03 18:47:19 by alexmarcell       #+#    #+#              #
-#    Updated: 2021/07/08 02:03:24 by alexmarcell      ###   ########.fr        #
+#    Updated: 2021/07/08 19:25:01 by amarcell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,8 @@ UWHITE		=		"\033[4;37m"       # White
 
 OBJS_DIR	=		objs_bonus
 
-SRCS		= 		philo_bonus.c	utils.c		ft_calloc.c 	ft_atoi.c	\
-					init_bonus.c	time.c			
+SRCS		= 		philo_bonus.c	utils.c		ft_calloc.c 	ft_atoi.c			\
+					init_bonus.c	time.c		routine_bonus.c	routine2_bonus.c		
 
 #---------------------COMPILER---------------------#
 

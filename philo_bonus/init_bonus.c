@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:04:29 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/08 02:16:58 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/08 19:37:20 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 int	create_process(t_main *control)
 {
 	int	i;
-	int pid;
+	int	pid;
 
 	i = 0;
 	while (i < control->n_philos)
 	{
 		pid = fork();
-		control->philo.id += i;
-		if (i > 5)
-			printf("AO\n");
+		control->philo.id = i + 1;
 		if (!pid)
 			return (2);
 		if (pid < 0)
@@ -44,6 +42,7 @@ static void	init_philo(t_main *control, t_philo *philo, int id)
 	philo->status = THINKING;
 	philo->can_i_eat = 0;
 	philo->global_time = &control->time;
+	philo->thread = 0;
 }
 
 int	init_main(t_main *control, char	**argc)
@@ -60,10 +59,12 @@ int	init_main(t_main *control, char	**argc)
 	else
 		control->eat_max = -1;
 	init_philo(control, &control->philo, 1);
-	control->sem = sem_open("forks", control->n_philos, O_CREAT);
-	if (!control->sem)
+	control->sem = sem_open("forks", control->n_philos, 0660, 0);
+	control->sem_print = sem_open("print", 1,  0660, 0);
+	if (!control->sem || !control->sem_print)
 		return (0);
-	control->philo.sem = control->sem;
+	control->philo.sem_forks = control->sem;
+	control->philo.sem_print = control->sem_print;
 	control->pid_philo = ft_calloc(control->n_philos, sizeof(pid_t));
 	return (1);
 }

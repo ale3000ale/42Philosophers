@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/08 02:10:31 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/08 19:23:25 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define	SLEEPING	3
 # define	FULL		4
 # define	FINISH		5
+# define	CAN_EAT		1
 
 typedef struct s_philo
 {
@@ -65,7 +66,9 @@ typedef struct s_philo
 	long			eat_max;
 	struct timeval	time;
 	struct timeval	*global_time;
-	sem_t			*sem;
+	sem_t			*sem_forks;
+	sem_t			*sem_print;
+	pthread_t		thread;
 }				t_philo;
 
 typedef struct s_main
@@ -79,6 +82,7 @@ typedef struct s_main
 	long			eat_max;
 	struct timeval	time;
 	sem_t			*sem;
+	sem_t			*sem_print;
 }				t_main;
 
 long	ft_latoi(const char *str);
@@ -90,5 +94,11 @@ void	*ft_calloc(size_t count, size_t size);
 long	msleep(int ms);
 int		create_process(t_main *control);
 int		init_main(t_main *control, char	**argc);
+int		timestamp(t_philo *philo, char *s, int alive);
+long	timepassed_ms(struct timeval time_start);
+int		think_time(t_philo *philo);
+void	*wait_forks(void *ph);
+int		starvation(t_philo *philo);
+void	philo_routine(t_philo *philo);
 
 #endif

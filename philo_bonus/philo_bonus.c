@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:46:39 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/08 02:11:26 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/08 19:26:57 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,30 @@ int	porkiller(t_main *control, int error)
 		while (i < control->n_philos)
 		{
 			if (control->pid_philo[i])
-				kill(control->pid_philo[i], SIGKILL);
+				kill(control->pid_philo[i], SIGINT);
 			i++;
 		}
 	}
 	return (1);
+}
+
+int	controller(t_main *control)
+{
+	int	n;
+	int	status;
+
+	n = control->n_philos;
+	while (n)
+	{
+		wait(&status);
+		if (!status)
+			n--;
+		else
+			porkiller(control, 0);
+	}
+	sem_close(control->sem_print);
+	sem_close(control->sem);
+	return (0);
 }
 
 int	main(int argv, char	**argc)
@@ -43,8 +62,8 @@ int	main(int argv, char	**argc)
 	if ((!pro))
 		return (porkiller(&control, 1));
 	if (pro == 2)
-		printf("PHILOS %d\n", control.philo.id);
+		philo_routine(&control.philo);
 	if (pro == 1)
-		//ck
-	return (1);
+		return (controller(&control));
+	return (0);
 }
