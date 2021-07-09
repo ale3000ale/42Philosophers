@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:46:39 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 02:40:00 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/09 18:28:06 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ int	controller(t_main *control)
 		else
 		{
 			porkiller(control, 0);
-			break;
+			break ;
 		}
-			
 	}
 	sem_close(control->sem_print);
 	sem_close(control->sem);
@@ -66,12 +65,13 @@ int	main(int argv, char	**argc)
 	t_main	control;
 	int		pro;
 
-	if (!((argv - 1 == 5 || argv - 1 == 4) && init_main(&control, argc)))
-		return (printf(RED"ERROR ARGUMENT\n"OFF) * 0 + 1);
 	write(1, "\n", 1);
 	write(1, PHIL, ft_strlen(PHIL));
-	write(1, PROCS, ft_strlen(PHIL));
+	write(1, PROCS, ft_strlen(PROCS));
+	write(1, "\n", 1);
 	msleep(2000);
+	if (!((argv - 1 == 5 || argv - 1 == 4) && init_main(&control, argc)))
+		return (printf(RED"ERROR ARGUMENT\n"OFF) * 0 + 1);
 	pro = create_process(&control);
 	if ((!pro))
 		return (porkiller(&control, 1));

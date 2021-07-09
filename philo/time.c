@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 03:15:22 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/07 18:53:32 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 19:22:13 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ long	msleep(int ms)
 	time_t			sec;
 	long			wait_time;
 
-	wait_time = (ms * 1000) / 2;
+	wait_time = (ms * 1000) >> 1;
 	ms = ms * 1000;
 	gettimeofday(&time, NULL);
 	time_start = time.tv_usec;
@@ -46,19 +46,12 @@ long	timepassed_ms(struct timeval time_start)
 
 int	timestamp(t_philo *philo, char *s, int alive)
 {
-	long	local_time;
 	long	global_time;
 
 	pthread_mutex_lock(philo->mutex_print);
-	if (!*philo->stop)
-	{
-		local_time = timepassed_ms(philo->time);
-		global_time = timepassed_ms(*philo->global_time);
-		printf("G:%6ld ms L:%6ld ms, %4d %s\n"\
-			OFF, global_time, local_time, philo->id, s);
-		if (!alive)
-			*philo->stop = 1;
-	}
+	global_time = timepassed_ms(*philo->global_time);
+	printf("G:%6ld ms | %4d %s\n"\
+		OFF, global_time, philo->id, s);
 	pthread_mutex_unlock(philo->mutex_print);
 	return (0);
 }

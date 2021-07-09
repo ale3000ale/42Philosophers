@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:36:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/07 01:38:44 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/09 19:10:59 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	mutex_init(t_main *control)
 {
 	int	i;
 
-	if (pthread_mutex_init(&control->print_mutex, NULL))
+	if (pthread_mutex_init(&control->print_mutex, NULL) \
+	 || pthread_mutex_init(&control->mutex_alive, NULL))
 		return (0);
 	if (!forks_gen(control))
 		return (0);
@@ -51,19 +52,16 @@ int	mutex_init(t_main *control)
 	control->mutex = ft_calloc(control->n_philos, sizeof(pthread_mutex_t));
 	while (i < control->n_philos)
 	{
-		if (pthread_mutex_init(&control->mutex[i], NULL))
+		control->philos[i].mutex_alive = &control->mutex_alive;
+		if (pthread_mutex_init(&control->mutex[i++], NULL))
 		{
 			free(control->mutex);
 			free(control->the_fork);
 			return (0);
 		}
-		i++;
 	}
 	i = 0;
 	while (i < control->n_philos)
-	{
-		philo_set_forks(control, &control->philos[i]);
-		i++;
-	}
+		philo_set_forks(control, &control->philos[i++]);
 	return (1);
 }

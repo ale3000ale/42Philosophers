@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:01:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 01:58:05 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/09 17:57:59 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static int	sleep_eat(t_philo *philo)
 	long			waiting;
 	long			extra;
 
-	waiting = timepassed_ms(philo->time) + philo->eat_time;
-	extra = waiting - philo->eat_time;
+	waiting = philo->eat_time;
+	extra = timepassed_ms(philo->time);
 	if (waiting - extra < philo->die_time)
-		return (msleep(philo->sleep_time - extra));
+		return (msleep(philo->eat_time - extra));
 	else
 	{
 		msleep(philo->die_time - extra);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:04:29 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 00:53:57 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/09 18:33:48 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	create_process(t_main *control)
 	int	pid;
 
 	i = 0;
+	gettimeofday(&control->time, NULL);
+	control->philo.global_time = &control->time;
 	while (i < control->n_philos)
 	{
 		pid = fork();
@@ -42,28 +44,41 @@ static void	init_philo(t_main *control, t_philo *philo, int id)
 	philo->sleep_time = control->sleep_time;
 	philo->status = THINKING;
 	philo->can_i_eat = 0;
-	philo->global_time = &control->time;
 	philo->thread = 0;
 }
 
-int	init_main(t_main *control, char	**argc)
+static int	init_args(t_main *control, char **argc)
 {
-	if (!is_integer(argc[1]))
+	if (!is_integer(argc[1]) || !is_integer(argc[2]) || !is_integer(argc[3]) \
+	 || !is_integer(argc[4]))
 		return (0);
 	control->n_philos = ft_atoi(argc[1]);
 	control->die_time = ft_latoi(argc[2]);
 	control->eat_time = ft_latoi(argc[3]);
 	control->sleep_time = ft_latoi(argc[4]);
-	gettimeofday(&control->time, NULL);
 	if (argc[5])
+	{
+		if (!is_integer(argc[5]))
+			return (0);
 		control->eat_max = ft_latoi(argc[5]);
+		if (control->eat_max < 1)
+			return (0);
+	}
 	else
 		control->eat_max = -1;
+	return (control->n_philos > 0 && control->die_time > 0 \
+	 && control->eat_time > 0 && control->sleep_time > 0);
+}
+
+int	init_main(t_main *control, char	**argc)
+{
+	if (!init_args(control, argc))
+		return (0);
 	init_philo(control, &control->philo, 1);
 	sem_unlink(SEM_FORKS);
 	sem_unlink(SEM_PRINT);
 	control->sem = sem_open(SEM_FORKS, O_CREAT, 0660, control->n_philos);
-	control->sem_print = sem_open(SEM_PRINT, O_CREAT,  0660, 1);
+	control->sem_print = sem_open(SEM_PRINT, O_CREAT, 0660, 1);
 	if (!control->sem || !control->sem_print)
 		return (0);
 	control->philo.sem_forks = control->sem;

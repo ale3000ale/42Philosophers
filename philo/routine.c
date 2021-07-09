@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 01:50:06 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/09 19:19:21 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ static void	sleeping(t_philo *philo)
 void	*starvation(t_philo *philo)
 {
 	philo->status = DEAD;
+	pthread_mutex_lock(philo->mutex_alive);
+	*philo->stop = 1;
+	pthread_mutex_unlock(philo->mutex_alive);
 	timestamp(philo, DEAD_STAMP, 0);
 	return (0);
 }
@@ -70,14 +73,16 @@ void	*philo_routine(void	*ph)
 		usleep(200);
 	while (1)
 	{
+		pthread_mutex_lock(philo->mutex_alive);
 		if (*philo->stop)
 			return (0);
-		if (philo->status == SLEEPING && !*philo->stop)
+		pthread_mutex_unlock(philo->mutex_alive);
+		if (philo->status == SLEEPING)
 			sleeping(philo);
-		if (philo->status == THINKING && !*philo->stop)
+		if (philo->status == THINKING)
 			if (think_time(philo))
 				break ;
-		if (timepassed_ms(philo->time) >= philo->die_time && !*philo->stop)
+		if (timepassed_ms(philo->time) >= philo->die_time)
 			return (starvation(philo));
 	}
 	timestamp(philo, FULL_STAMP, 1);

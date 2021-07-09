@@ -6,7 +6,7 @@
 #    By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/03 18:47:19 by alexmarcell       #+#    #+#              #
-#    Updated: 2021/07/07 18:26:11 by amarcell         ###   ########.fr        #
+#    Updated: 2021/07/09 19:12:55 by amarcell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,14 +65,14 @@ OBJS		=		$(patsubst %.c, ${OBJS_DIR}/%.o, ${SRCS})
 
 $(OBJS_DIR)/%.o :	./%.c
 			@ mkdir -p $(OBJS_DIR)
-			$(CC) $(CFLAGS) -pthread -c $< -o $@
+			$(CC) $(CFLAGS) -pthread -g -c $< -o $@
 
 #---------------------COMMANDS---------------------#
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) -g $(OBJS) -o $(NAME)
 			@ echo $(BGREEN) "$(NAME) compiled successfully ✅" $(COLOR_OFF)
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:11:30 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/07 18:33:09 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 19:21:19 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ static void	destoy_mutex(t_main *control)
 		pthread_mutex_destroy(&control->mutex[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&control->print_mutex);
+	pthread_mutex_destroy(&control->mutex_alive);
 	free(control->mutex);
 }
 
-static void	controller(t_main *control)
+static int	controller(t_main *control)
 {
 	int		remaining;
 	int		i;
@@ -37,33 +39,40 @@ static void	controller(t_main *control)
 	{	
 		i = i % control->n_philos;
 		if (control->philos[i].status == DEAD)
-		{
-			control->stop = 1;
-			break ;
-		}
+			return (0);
 		else if (control->philos[i].status == FULL)
 		{
 			remaining--;
+			printf("AO %d\n", remaining);
 			control->philos[i].status = FINISH;
 		}
 		if (!remaining)
-			break ;
+			return (1);
 		i++;
 	}
-	return ;
+	return (1);
 }
 
 int	main(int argv, char	**argc)
 {
 	t_main	control;
 
+	write(1, "\n", 1);
+	write(1, PHIL, ft_strlen(PHIL));
+	write(1, THR, ft_strlen(THR));
+	write(1, "\n", 1);
+	msleep(1250);
 	if (!((argv - 1 == 5 || argv - 1 == 4) && init_main(&control, argc)))
-		return (printf("ERROR ARGUMENT\n") * 0 + 1);
+		return (printf(RED"ERROR ARGUMENT\n"OFF) * 0 + 1);
 	if ((!create_threads(&control)))
-		return (printf("ERROR THREADS \n") * 0 + 1);
-	controller(&control);
+		return (printf(RED"ERROR THREADS \n"OFF) * 0 + 1);
+	if (!controller(&control))
+	{
+		thjoin(&control);
+	}
 	free(control.threads);
 	free(control.philos);
+	free(control.the_fork);
 	destoy_mutex(&control);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
+/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/09 01:56:04 by alexmarcell      ###   ########.fr       */
+/*   Updated: 2021/07/09 18:57:47 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,44 @@
 # define	FULL		4
 # define	FINISH		5
 
+# define PHIL	"\033[0;33m \
+_______  __   __  ___   ___      _______  _______  _______  _______  __ \
+  __  _______  ______    _______ \n\
+|       ||  | |  ||   | |   |    |       ||       ||       ||       ||  | \
+|  ||       ||    _ |  |       |\n\
+|    _  ||  |_|  ||   | |   |    |   _   ||  _____||   _   ||    _  ||  |_\
+|  ||    ___||   | ||  |  _____|\n\
+|   |_| ||       ||   | |   |    |  | |  || |_____ |  | |  ||   |_| ||    \
+   ||   |___ |   |_||_ | |_____ \n\
+|    ___||       ||   | |   |___ |  |_|  ||_____  ||  |_|  ||    ___||    \
+   ||    ___||    __  ||_____  |\n\
+|   |    |   _   ||   | |       ||       | _____| ||       ||   |    |   _\
+   ||   |___ |   |  | | _____| |\n\
+|___|    |__| |__||___| |_______||_______||_______||_______||___|    |__| \
+|__||_______||___|  |_||_______|\n\
+\033[0m\n\n"
+
+# define THR    "\033[0;32m\
+    ███        ▄█    █▄       ▄████████    ▄████████    ▄████████ \
+████████▄     ▄████████\n\
+▀█████████▄   ███    ███     ███    ███   ███    ███   ███    ███ \
+███   ▀███   ███    ███\n\
+   ▀███▀▀██   ███    ███     ███    ███   ███    █▀    ███    ███ \
+███    ███   ███    █▀ \n\
+    ███   ▀  ▄███▄▄▄▄███▄▄  ▄███▄▄▄▄██▀  ▄███▄▄▄       ███    ███ \
+███    ███   ███       \n\
+    ███     ▀▀███▀▀▀▀███▀  ▀▀███▀▀▀▀▀   ▀▀███▀▀▀     ▀███████████ \
+███    ███ ▀███████████\n\
+    ███       ███    ███   ▀███████████   ███    █▄    ███    ███ \
+███    ███          ███\n\
+    ███       ███    ███     ███    ███   ███    ███   ███    ███ \
+███   ▄███    ▄█    ███\n\
+   ▄████▀     ███    █▀      ███    ███   ██████████   ███    █▀  \
+████████▀   ▄████████▀ \n\
+                             ███    ███                           \
+amarcell                    \n\
+   \033[0m \n \n"
+
 typedef struct s_philo
 {
 	int				id;
@@ -68,6 +106,7 @@ typedef struct s_philo
 	pthread_mutex_t	*mutex_left;
 	pthread_mutex_t	*mutex_rigth;
 	pthread_mutex_t	*mutex_print;
+	pthread_mutex_t	*mutex_alive;
 	struct timeval	time;
 	struct timeval	*global_time;
 }				t_philo;
@@ -77,6 +116,7 @@ typedef struct s_main
 	int				n_philos;
 	pthread_t		*threads;
 	pthread_mutex_t	*mutex;
+	pthread_mutex_t	mutex_alive;
 	pthread_mutex_t	print_mutex;
 	t_philo			*philos;
 	long			die_time;
@@ -88,6 +128,7 @@ typedef struct s_main
 	struct timeval	time;
 }				t_main;
 
+void	thjoin(t_main *control);
 long	ft_latoi(const char *str);
 int		ft_atoi(const char *str);
 int		ft_isnumber(char *s);

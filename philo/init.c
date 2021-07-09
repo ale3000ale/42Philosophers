@@ -6,11 +6,20 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 19:38:07 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/06 16:21:40 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 19:11:38 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	thjoin(t_main *control)
+{
+	int	i;
+
+	i = 0;
+	while (i < control->n_philos)
+		pthread_join(control->threads[i++], NULL);
+}
 
 int	create_threads(t_main *control)
 {
@@ -27,6 +36,10 @@ int	create_threads(t_main *control)
 		if (pthread_create(&control->threads[i], NULL, \
 							philo_routine, &control->philos[i]))
 		{
+			pthread_mutex_lock(&control->mutex_alive);
+			control->stop = 1;
+			pthread_mutex_unlock(&control->mutex_alive);
+			thjoin(control);
 			free(control->threads);
 			free(control->philos);
 			return (0);
@@ -50,11 +63,10 @@ static void	init_philo(t_main *control, t_philo *philo, int id)
 	philo->mutex_print = &control->print_mutex;
 }
 
-int	init_main(t_main *control, char	**argc)
+static int	init_args(t_main *control, char **argc)
 {
-	int	i;
-
-	if (!is_integer(argc[1]))
+	if (!is_integer(argc[1]) || !is_integer(argc[2]) || !is_integer(argc[3]) \
+	 || !is_integer(argc[4]))
 		return (0);
 	control->n_philos = ft_atoi(argc[1]);
 	control->die_time = ft_latoi(argc[2]);
@@ -62,9 +74,25 @@ int	init_main(t_main *control, char	**argc)
 	control->sleep_time = ft_latoi(argc[4]);
 	control->stop = 0;
 	if (argc[5])
+	{
+		if (!is_integer(argc[5]))
+			return (0);
 		control->eat_max = ft_latoi(argc[5]);
+		if (control->eat_max < 1)
+			return (0);
+	}
 	else
 		control->eat_max = -1;
+	return (control->n_philos > 0 && control->die_time > 0 \
+	 && control->eat_time > 0 && control->sleep_time > 0);
+}
+
+int	init_main(t_main *control, char **argc)
+{
+	int	i;
+
+	if (!init_args(control, argc))
+		return (0);
 	i = -1;
 	control->philos = ft_calloc(control->n_philos, sizeof(t_philo));
 	if (!control->philos)
