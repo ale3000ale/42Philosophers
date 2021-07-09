@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:04:29 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/08 19:37:20 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 00:53:57 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	create_process(t_main *control)
 			return (2);
 		if (pid < 0)
 			return (0);
+		control->pid_philo[i] = pid;
 		i++;
 	}
 	return (1);
@@ -59,8 +60,10 @@ int	init_main(t_main *control, char	**argc)
 	else
 		control->eat_max = -1;
 	init_philo(control, &control->philo, 1);
-	control->sem = sem_open("forks", control->n_philos, 0660, 0);
-	control->sem_print = sem_open("print", 1,  0660, 0);
+	sem_unlink(SEM_FORKS);
+	sem_unlink(SEM_PRINT);
+	control->sem = sem_open(SEM_FORKS, O_CREAT, 0660, control->n_philos);
+	control->sem_print = sem_open(SEM_PRINT, O_CREAT,  0660, 1);
 	if (!control->sem || !control->sem_print)
 		return (0);
 	control->philo.sem_forks = control->sem;

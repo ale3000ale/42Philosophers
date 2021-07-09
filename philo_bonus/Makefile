@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+         #
+#    By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/03 18:47:19 by alexmarcell       #+#    #+#              #
-#    Updated: 2021/07/08 19:25:01 by amarcell         ###   ########.fr        #
+#    Updated: 2021/07/09 00:50:00 by alexmarcell      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

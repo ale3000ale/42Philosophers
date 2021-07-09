@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:01:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/08 19:34:40 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 01:58:05 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	philo_routine(t_philo *philo)
 {
 	gettimeofday(&philo->time, NULL);
 	if (philo->id % 2)
-		usleep(300);
+		usleep(200);
 	while (1)
 	{
 		if (philo->status == THINKING && !philo->thread)

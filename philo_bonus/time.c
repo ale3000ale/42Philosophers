@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:56:17 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/08 17:05:13 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 01:55:40 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	timestamp(t_philo *philo, char *s, int alive)
 	sem_wait(philo->sem_print);
 	local_time = timepassed_ms(philo->time);
 	global_time = timepassed_ms(*philo->global_time);
-	printf("G:%6ld ms L:%6ld ms, %4d %s\n"\
-		OFF, global_time, local_time, philo->id, s);
+	printf("G:%6ld ms L:%6ld ms, %4d %s\n"OFF, \
+		global_time, local_time, philo->id, s);
+	write(1,OFF,4);
 	if (!alive)
 		return (0);
 	sem_post(philo->sem_print);

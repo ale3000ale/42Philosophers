@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/07 17:53:34 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 01:50:06 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*philo_routine(void	*ph)
 	philo = (t_philo *)ph;
 	gettimeofday(&philo->time, NULL);
 	if (philo->id % 2)
-		usleep(500);
+		usleep(200);
 	while (1)
 	{
 		if (*philo->stop)

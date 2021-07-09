@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexmarcelli <alexmarcelli@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:07:07 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/08 19:35:31 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/09 01:58:15 by alexmarcell      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	starvation(t_philo *philo)
 		sem_post(philo->sem_forks);
 		philo->can_i_eat--;
 	}
-	return (0);
+	return (1);
 }
