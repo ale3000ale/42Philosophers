@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 19:38:07 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/09 19:11:38 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 15:47:25 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	thjoin(t_main *control)
 {
 	int	i;
 
-	i = 0;
-	while (i < control->n_philos)
-		pthread_join(control->threads[i++], NULL);
+	i = -1;
+	while (++i < control->n_philos)
+		pthread_join(control->threads[i], NULL);
 }
 
 int	create_threads(t_main *control)

@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:11:30 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/09 19:21:19 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 15:53:06 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ static int	controller(t_main *control)
 	while (1)
 	{	
 		i = i % control->n_philos;
-		if (control->philos[i].status == DEAD)
-			return (0);
-		else if (control->philos[i].status == FULL)
+		pthread_mutex_lock(&control->mutex_alive);
+		if (control->stop == 1)
+			return (pthread_mutex_unlock(&control->mutex_alive));
+		pthread_mutex_unlock(&control->mutex_alive);
+		if (control->philos[i].status == FULL)
 		{
 			remaining--;
-			printf("AO %d\n", remaining);
 			control->philos[i].status = FINISH;
 		}
 		if (!remaining)
@@ -67,9 +68,9 @@ int	main(int argv, char	**argc)
 	if ((!create_threads(&control)))
 		return (printf(RED"ERROR THREADS \n"OFF) * 0 + 1);
 	if (!controller(&control))
-	{
 		thjoin(&control);
-	}
+	else
+		printf("ALL ARE FULL\n");
 	free(control.threads);
 	free(control.philos);
 	free(control.the_fork);

@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/09 18:57:47 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 15:21:14 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ long	timepassed_ms(struct timeval time_start);
 void	*philo_routine(void	*ph);
 int		mutex_init(t_main *control);
 int		think_time(t_philo *philo);
-int		timestamp(t_philo *philo, char *s, int alive);
+int		timestamp(t_philo *philo, char *s);
 int		get_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork);
 
 #endif

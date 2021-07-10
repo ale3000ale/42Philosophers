@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:28:01 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 19:19:21 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 15:41:00 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 int	get_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork)
 {
-	pthread_mutex_lock(mutex);
-	if (fork[0])
+	if (philo->can_i_eat != 2 && philo->status == THINKING)
 	{
-		fork[0] = 0;
-		philo->can_i_eat++;
-		timestamp(philo, FORK_STAMP, 1);
+		pthread_mutex_lock(mutex);
+		if (fork[0])
+		{
+			fork[0] = 0;
+			philo->can_i_eat++;
+			timestamp(philo, FORK_STAMP);
+			pthread_mutex_unlock(mutex);
+			return (1);
+		}
 		pthread_mutex_unlock(mutex);
-		return (1);
 	}
-	pthread_mutex_unlock(mutex);
 	return (0);
 }
 
@@ -46,20 +49,17 @@ static long	sleep_spleeping(t_philo *philo)
 
 static void	sleeping(t_philo *philo)
 {
-	timestamp(philo, SLEEP_STAMP, 1);
+	timestamp(philo, SLEEP_STAMP);
 	if (sleep_spleeping(philo) < 0)
 		return ;
 	philo->status = THINKING;
-	timestamp(philo, THINKING_STAMP, 1);
+	timestamp(philo, THINKING_STAMP);
 }
 
 void	*starvation(t_philo *philo)
 {
 	philo->status = DEAD;
-	pthread_mutex_lock(philo->mutex_alive);
-	*philo->stop = 1;
-	pthread_mutex_unlock(philo->mutex_alive);
-	timestamp(philo, DEAD_STAMP, 0);
+	timestamp(philo, DEAD_STAMP);
 	return (0);
 }
 
@@ -75,7 +75,10 @@ void	*philo_routine(void	*ph)
 	{
 		pthread_mutex_lock(philo->mutex_alive);
 		if (*philo->stop)
+		{
+			pthread_mutex_unlock(philo->mutex_alive);
 			return (0);
+		}
 		pthread_mutex_unlock(philo->mutex_alive);
 		if (philo->status == SLEEPING)
 			sleeping(philo);
@@ -85,6 +88,6 @@ void	*philo_routine(void	*ph)
 		if (timepassed_ms(philo->time) >= philo->die_time)
 			return (starvation(philo));
 	}
-	timestamp(philo, FULL_STAMP, 1);
+	timestamp(philo, FULL_STAMP);
 	return (0);
 }
