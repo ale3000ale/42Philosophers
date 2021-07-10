@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:56:17 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 18:34:17 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 16:10:52 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ long	timepassed_ms(struct timeval time_start)
 		(time_start.tv_sec * 1000000 + time_start.tv_usec)) / 1000);
 }
 
-int	timestamp(t_philo *philo, char *s, int alive)
+int	timestamp(t_philo *philo, char *s)
 {
 	long	global_time;
 
@@ -53,7 +53,7 @@ int	timestamp(t_philo *philo, char *s, int alive)
 	printf("G:%6ld ms | %4d %s\n"OFF, \
 		global_time, philo->id, s);
 	write(1, OFF, 4);
-	if (!alive)
+	if (philo->status == DEAD)
 		return (0);
 	sem_post(philo->sem_print);
 	return (0);

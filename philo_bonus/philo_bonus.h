@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/09 18:18:59 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 16:10:24 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	*ft_calloc(size_t count, size_t size);
 long	msleep(int ms);
 int		create_process(t_main *control);
 int		init_main(t_main *control, char	**argc);
-int		timestamp(t_philo *philo, char *s, int alive);
+int		timestamp(t_philo *philo, char *s);
 long	timepassed_ms(struct timeval time_start);
 int		think_time(t_philo *philo);
 void	*wait_forks(void *ph);

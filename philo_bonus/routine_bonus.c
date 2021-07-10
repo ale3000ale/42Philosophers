@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:01:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 17:57:59 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/10 16:14:11 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,25 @@ static int	sleep_eat(t_philo *philo)
 
 static void	sleeping(t_philo *philo)
 {
-	timestamp(philo, SLEEP_STAMP, 1);
+	timestamp(philo, SLEEP_STAMP);
 	if (sleep_spleeping(philo) < 0)
 		return ;
 	philo->status = THINKING;
-	timestamp(philo, THINKING_STAMP, 1);
+	timestamp(philo, THINKING_STAMP);
 }
 
 static int	eating(t_philo *philo)
 {
 	pthread_join(philo->thread, NULL);
 	philo->thread = 0;
-	timestamp(philo, EATING_STAMP, 1);
+	timestamp(philo, EATING_STAMP);
 	gettimeofday(&philo->time, NULL);
 	if (sleep_eat(philo) < 0)
 		return (0);
-	sem_post(philo->sem_forks);
-	sem_post(philo->sem_forks);
 	philo->can_i_eat = 0;
-	timestamp(philo, DROP_STAMP, 1);
+	timestamp(philo, DROP_STAMP);
+	sem_post(philo->sem_forks);
+	sem_post(philo->sem_forks);
 	philo->status = SLEEPING;
 	if (philo->eat_max != -1 && ++philo->eat_count == philo->eat_max)
 	{
@@ -93,6 +93,6 @@ void	philo_routine(t_philo *philo)
 		if (timepassed_ms(philo->time) >= philo->die_time)
 			exit(starvation(philo));
 	}
-	timestamp(philo, FULL_STAMP, 1);
+	timestamp(philo, FULL_STAMP);
 	exit (0);
 }
