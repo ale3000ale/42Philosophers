@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 18:14:11 by alexmarcell       #+#    #+#             */
-/*   Updated: 2021/07/10 16:10:24 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:39:58 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ _______  __   __  ___   ___      _______  _______  _______  _______  __ \
 
 # define	SEM_FORKS	"forks"
 # define	SEM_PRINT	"print"
+# define	SEM_ALIVE	"alive"
 
 typedef struct s_philo
 {
@@ -110,6 +111,7 @@ typedef struct s_philo
 	struct timeval	*global_time;
 	sem_t			*sem_forks;
 	sem_t			*sem_print;
+	sem_t			*sem_alive;
 	pthread_t		thread;
 }				t_philo;
 
@@ -125,6 +127,7 @@ typedef struct s_main
 	struct timeval	time;
 	sem_t			*sem;
 	sem_t			*sem_print;
+	sem_t			*sem_alive;
 }				t_main;
 
 long	ft_latoi(const char *str);

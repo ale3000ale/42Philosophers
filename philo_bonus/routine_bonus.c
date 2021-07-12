@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:01:10 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/10 16:14:11 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:43:23 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	philo_routine(t_philo *philo)
 		usleep(200);
 	while (1)
 	{
+		sem_wait(philo->sem_alive);
+		sem_post(philo->sem_alive);
 		if (philo->status == THINKING && !philo->thread)
 			pthread_create(&philo->thread, NULL, wait_forks, (void *)philo);
 		if (philo->status == EATING)

@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:07:07 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/10 16:10:44 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:45:24 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*wait_forks(void *ph)
 int	starvation(t_philo *philo)
 {
 	philo->status = DEAD;
+	sem_wait(philo->sem_alive);
 	timestamp(philo, DEAD_STAMP);
 	if (philo->thread)
 		pthread_detach(philo->thread);

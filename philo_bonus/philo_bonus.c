@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:46:39 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/10 16:16:09 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:58:09 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	controller(t_main *control)
 	if (!n)
 		printf("ALL PHILOS ARE FULL\n");
 	sem_close(control->sem_print);
+	sem_close(control->sem_alive);
 	sem_close(control->sem);
 	return (0);
 }

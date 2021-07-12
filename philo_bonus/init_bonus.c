@@ -6,7 +6,7 @@
 /*   By: amarcell <amarcell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:04:29 by amarcell          #+#    #+#             */
-/*   Updated: 2021/07/09 18:33:48 by amarcell         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:41:00 by amarcell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,15 @@ int	init_main(t_main *control, char	**argc)
 	init_philo(control, &control->philo, 1);
 	sem_unlink(SEM_FORKS);
 	sem_unlink(SEM_PRINT);
+	sem_unlink(SEM_ALIVE);
 	control->sem = sem_open(SEM_FORKS, O_CREAT, 0660, control->n_philos);
 	control->sem_print = sem_open(SEM_PRINT, O_CREAT, 0660, 1);
-	if (!control->sem || !control->sem_print)
+	control->sem_alive = sem_open(SEM_ALIVE, O_CREAT, 0660, 1);
+	if (!control->sem || !control->sem_print || !control->sem_alive)
 		return (0);
 	control->philo.sem_forks = control->sem;
 	control->philo.sem_print = control->sem_print;
+	control->philo.sem_alive = control->sem_alive;
 	control->pid_philo = ft_calloc(control->n_philos, sizeof(pid_t));
 	return (1);
 }
